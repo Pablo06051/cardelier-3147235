@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+//Modelos del proyecto
+
+model brand {
+  id Int @id @default(autoincrement())
+  name String 
+  cars car[]
+
+}
+
+model car {
+  id Int @id @default(autoincrement())
+  plate String 
+  release_date DateTime 
+  is_avaliable Boolean @default(true)
+  price Decimal 
+  //campo de la clave foranea
+  brand_id Int
+  //relacion con la tabla brand
+  brand brand  @relation(fields: [brand_id], references: [id])
+}
+
+// Modelo de proyecto
+
+model estado{
+  id Int @id @default(autoincrement())
+  estado String 
+  usuario usuario []
+
+}
+
+model usuario {
+  id Int @id @default(autoincrement())
+  username String @unique 
+  password String
+  estado_id Int @default(1)
+  estado estado @relation(fields: [estado_id], references: [id])
+}

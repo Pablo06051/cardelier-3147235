@@ -1,0 +1,15 @@
+meta {
+  name: borrar usuario
+  type: http
+  seq: 2
+}
+
+delete {
+  url: http://localhost:3010/user
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
