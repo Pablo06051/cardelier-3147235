@@ -1,15 +1,21 @@
 meta {
   name: registrar nuevo carro
   type: http
-  seq: 1
+  seq: 3
 }
 
 post {
   url: http://localhost:3010/cars
-  body: none
-  auth: inherit
+  body: json
+  auth: none
 }
 
-settings {
-  encodeUrl: true
+body:json {
+  {
+    "plate": "ETD-590",
+    "release_date": "2002-03-05",
+    "is_available": true,
+    "price": 240000,
+    "brand_id": 1
+  }
 }
